@@ -49,9 +49,9 @@ export const addNotes = async (req:Request, res:Response) => {
     let id:number = Number(req.user);
 
     if(req.body.note && id){
-       
-        let note:string = req.body.note;
         
+        let note:string = req.body.note;
+        console.log(note)
         
         let user = await NoteService.addNotes(note, id);
         

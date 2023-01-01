@@ -21,6 +21,7 @@ export const addNotes = async (n:string, id:number) => {
 
             notesArray.push(n);
             note.content = notesArray;
+            note.save();
             
             return note;
         }else{
