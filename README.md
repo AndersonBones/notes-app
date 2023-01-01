@@ -13,6 +13,8 @@ e tudo aquilo que voce não pode esquecer :)
 ### Para rodar o projeto
 `npm run start-dev`
 
+### Screenshots
+<img src="/images/screen.gif">
 
 ### Live Demo
 <a href="https://notes-app-zgi1.onrender.com">Live Demo</a>
