@@ -6,14 +6,16 @@ export const login = async (req:Request, res:Response) => {
     let Unauthorized = false;
     let message = '';
 
-    res.render('pages/login', {Unauthorized, message})
+    res.status(200).render('pages/login', {Unauthorized, message})
 }
 
 export const register = async (req:Request, res:Response) => {
-   res.render("pages/register") 
+   res.status(200).render("pages/register") 
 }
 
 export const dashboard = async (req:Request, res:Response) => {
+    
+
     let NotHaveNotes = "you still don't have any notes" as string
     let notes:string[] = [] ;
 
@@ -33,10 +35,11 @@ export const dashboard = async (req:Request, res:Response) => {
     }
     
     
-    res.render('pages/dashboard', {notes, error:NotHaveNotes})
+    res.status(201).render('pages/dashboard', {notes, error:NotHaveNotes})
+
    
 }
 
 export const logout = async (req:Request, res:Response) => {
-    res.clearCookie('token').redirect('/');
+    res.status(200).clearCookie('token').redirect('/');
 }

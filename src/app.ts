@@ -1,11 +1,10 @@
 import express,{ErrorRequestHandler} from 'express'
-import dotenv from 'dotenv'
+
 import path from 'path' 
 import routes from './routes/index'
 import cookieParser from 'cookie-parser';
 import passport from 'passport'
 
-dotenv.config();
 const app = express();
 
 app.use(cookieParser()) // set cookies
@@ -36,11 +35,11 @@ const errorHandler:ErrorRequestHandler = (err, req, res, next)=>{
         res.json({error:err.message})
     }
     if(err){
-        res.redirect('/login')
+        res.status(401).redirect('/login')
     }
 }
 
 app.use(errorHandler);
 
 
-app.listen(process.env.PORT)
+export default app

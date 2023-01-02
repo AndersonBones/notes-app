@@ -9,6 +9,7 @@ export const ConnectDB = async (req:Request, res:Response, next:NextFunction) =>
         await sequelize.authenticate();
         User.sync();
         Notes.sync();
+        res.status(200)
         console.log('Connection has been established successfully.');
         next();
     } catch (error) {

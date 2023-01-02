@@ -43,10 +43,13 @@
                 </div>
     
                 <div class="info">
-                    <h1 class="text-white mt-3 ">Notes</h1>
+                    <div class="mt-3 info-title d-flex align-items-center ">
+                        <h1 class="text-white me-2">Notes</h1>
+                        <img src="/images/notepad.png" width="25" height="25" alt="">
+                    </div>
                     
-                    <p class="text-secondary">Add, edit and remove your notes
-                        <img src="/images/notepad.png" width="30" alt=""></p>
+                    
+                    <p class="text-secondary">Add, edit and remove your notes</p>
                 </div>
             </div>
             
@@ -71,7 +74,7 @@
         </div>
         
         
-        <div class="notes-area  col-11 align-content-start  overflow-auto d-flex flex-wrap " style="gap: .5rem;">
+        <div class="notes-area row col-11 align-content-center overflow-auto d-flex flex-wrap " style="gap: .4rem;">
             
             <%if(error && notes.length == 0) { %>
                 <p class='text-danger'><%=error%></p>
@@ -79,7 +82,7 @@
                 
             <% if(notes.length > 0){ %>
                 <% notes.map(item =>{ %>
-                    <div class="note-item bg-dark d-flex justify-content-between flex-column rounded-1 p-3 text-light">
+                    <div class="note-item  bg-dark d-flex justify-content-between flex-column rounded-1 p-3 text-light">
                         <div class="content overflow-hidden">
                             <p><%=item.trim()%></p>
                         </div>

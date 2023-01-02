@@ -31,7 +31,7 @@ const matchPassword = (passTxt:string, hash:string) =>{
 }
 
 const genToken = async (data:object) => {
-    return jwt.sign(data, process.env.SECRET_TOKEN as string);
+    return jwt.sign(data, process.env.SECRET_TOKEN as string, {expiresIn:'7d'});
 }
 
 export default {findByEmail, findById, matchPassword, genToken, register}

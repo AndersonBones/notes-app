@@ -4,6 +4,7 @@ import * as NoteService from '../services/NotesService'
 import dotenv from 'dotenv'
 
 dotenv.config();
+let expiresCookie = Date.now()+ 1000 * 3600 * 24 * 7;
 
 export const loginValidate = async (req:Request, res:Response) => {
     let Unauthorized = false;
@@ -15,8 +16,10 @@ export const loginValidate = async (req:Request, res:Response) => {
         let user = await UserService.findByEmail(email);
 
         if(user && UserService.matchPassword(password, user.password)){
+            
+            
             const token = await UserService.genToken({id:user.id});
-            res.status(201).cookie('token', token, {httpOnly:true}).redirect('/dashboard')
+            res.status(201).cookie('token', token, {expires:new Date(expiresCookie),httpOnly:true}).redirect('/dashboard')
             return;
         } else{
             Unauthorized = true;
@@ -34,11 +37,11 @@ export const registerValidate = async (req:Request, res:Response) => {
 
        let newUser = await UserService.register(name, email, password);
 
-       if(newUser instanceof Error){
-            return res.json({error:newUser.message})
+       if(newUser instanceof Error){ // precisa informar se já existe a conta
+            return res.status(401).json({error:newUser.message})
        }else{
         const token = await UserService.genToken({id:newUser.id})
-        res.status(201).cookie('token', token, {httpOnly:true}).redirect('/dashboard');
+        res.status(201).cookie('token', token, {expires:new Date(expiresCookie),httpOnly:true}).redirect('/dashboard');
        }
     }else{
         res.status(401).render('pages/error')
@@ -56,10 +59,10 @@ export const addNotes = async (req:Request, res:Response) => {
         let user = await NoteService.addNotes(note, id);
         
         if(user instanceof Error){
-            res.json({error:user.message})
+            res.status(401).json({error:user.message})
         }else{
             
-            res.redirect('/dashboard')
+            res.status(201).redirect('/dashboard')
         }
     }else{
         res.status(401).json({error:'Dados não enviados'})
@@ -76,9 +79,9 @@ export const deleteNotes = async (req:Request, res:Response) => {
         let user = await NoteService.deleteNotes(indexNote, id);
 
         if(user instanceof Error){
-            res.json({error:user.message})
+            res.status(401).json({error:user.message})
         }else{
-            res.redirect('/dashboard')
+            res.status(201).redirect('/dashboard')
         }
     }else{
         res.status(401).json({error:'Dados não enviados'})
@@ -96,9 +99,9 @@ export const editNotes = async (req:Request, res:Response) => {
         let user = await NoteService.editNotes(indexNote, id, note);
 
         if(user instanceof Error){
-            res.json({error:user.message})
+            res.status(401).json({error:user.message})
         }else{
-            res.redirect('/dashboard')
+            res.status(201).redirect('/dashboard')
         }
     }else{
         res.status(401).json({error:'Dados não enviados'})

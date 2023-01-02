@@ -57,11 +57,26 @@ textarea{
 
 .note-item{
     
-    width: 32.7% !important;
+    width: 32.8% !important;
     height: 230px !important;
    
 }
 
+@media only screen and (max-width: 992px) {
+    .note-item{
+        width: 49% !important;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .note-item{
+        width: 90% !important;
+    }
+
+    .notes-area{
+        justify-content: center;
+    }
+  }
 
 .note-item .content{
     max-height: 140px !important;
