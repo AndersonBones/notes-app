@@ -7,7 +7,7 @@ let CancelAddNoteBtn = document.querySelector("#cancel-note")
 
 let EditInputAreaList = document.getElementsByClassName("edit-note"); // edit input area
 // edit and cancel 
-let EditNoteBtnList = document.getElementsByClassName("Edit-NoteBtn");
+let EditNoteBtnList = document.getElementsByClassName("EditNote-btn");
 let CancelEditNoteBtnList = document.getElementsByClassName("Cancel-EditNoteBtn");
 
 

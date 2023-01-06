@@ -89,20 +89,17 @@
 
                         
                         <div class="note-item-actions d-flex flex-column" >
-                            <div class="date text-dark d-block">
-                                <p>10:18 PM 22 August</p>
-                            </div>
-
+                            
                             <div class="note-item-actions d-flex" style="gap: .8rem;">
                                 
-                                <button type="submit" class="btn-floating btn-flat waves-effect waves-light text-white blue bi bi-pencil-square Edit-NoteBtn"  style="font-size: 1.2rem;"></button>
+                                <button type="submit" class="btn-floating btn-flat waves-effect waves-light text-white blue bi bi-pencil-square EditNote-btn"  style="font-size: 1.2rem;"></button>
                                 
                                 <div class="background-note-text align-items-center justify-content-center edit-note ">
                                     <form action="/edit-item/<%=notes.indexOf(item)%>" method="post">
                                         <div class="form-group" style="width: 280px; height: 250px;">
-                                            <textarea style="outline: none; resize: none;" class="form-control text-white p-2 rounded bg-dark border-0" cols="100" rows="100" name="note"><%=item.trim()%></textarea>
+                                            <textarea style="outline: none; resize: none;" class="form-control overflow-auto text-white p-2 rounded bg-dark border-0" cols="100" rows="100" name="note"><%=item.trim()%></textarea>
                                             <div class="bg-dark p-3 rounded w-100 mt-2 actions d-inline-flex  justify-content-between" style="gap: 1rem;">
-                                                <button type="submit" class="waves-effect waves-light btn-small blue" id="save-Edit-note">Save</button>
+                                                <button  type="submit" class="waves-effect waves-light btn-small blue" id="save-Edit-note">Save</button>
                                                 <button type="button" class="waves-effect waves-light btn-small red Cancel-EditNoteBtn" >Cancel</button>
                         
                                             </div>
@@ -112,7 +109,7 @@
 
                                 
                                 <form method="post" action="/delete-item/<%=notes.indexOf(item)%>">
-                                    <button type="submit" class="btn-floating btn-flat waves-effect waves-light text-white red bi bi-trash3" style="font-size: 1.2rem; z-index:0 ;"></button>
+                                    <button type="submit" class="DeleteNote-btn btn-floating btn-flat waves-effect waves-light text-white red bi bi-trash3" style="font-size: 1.2rem; z-index:0 ;"></button>
                                 </form>
                             </div>
                         </div>

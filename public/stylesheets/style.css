@@ -1,3 +1,8 @@
+
+:root{
+    --background1:rgb(12, 11, 11);
+    --background2:white;
+}
 body{
     display: flex;
     flex-direction: column;
@@ -6,7 +11,7 @@ body{
    
     padding-top: .5rem;
     padding-bottom: .5rem;
-    background-color: rgb(12, 11, 11);
+    background-color: var(--background1);
 }
 
 
@@ -55,6 +60,9 @@ textarea{
     z-index: 0;
 }
 
+.EditNote-btn, .DeleteNote-btn{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
 .note-item{
     
     width: 32.8% !important;
