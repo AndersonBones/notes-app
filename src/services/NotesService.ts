@@ -1,10 +1,11 @@
 import Notes from '../models/Notes'
-
+import { NotesInstance } from '../models/Notes';
 export const getNotes = async (id:number) => {
-    let notes = await Notes.findOne({where:{note_id:id}});
+    let Findnotes = await Notes.findOne({where:{note_id:id}});
 
-    if(notes){
-        return notes;
+    if(Findnotes){
+       
+        return Findnotes;
     }else{
         return new Error("you still don't have any notes")
     }
@@ -14,7 +15,7 @@ export const getNotes = async (id:number) => {
 export const addNotes = async (n:string, id:number) => {
    
     try {
-        let note = await Notes.findOne({where:{note_id:id}})
+        let note = await Notes.findOne({where:{note_id:id}}) as NotesInstance
 
         if(note){
             let notesArray:string[] = [...note.content];
@@ -22,6 +23,8 @@ export const addNotes = async (n:string, id:number) => {
             notesArray.push(n);
             note.content = notesArray;
             note.save();
+            let dateNow = new Date()
+
             
             return note;
         }else{

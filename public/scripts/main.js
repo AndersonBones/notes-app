@@ -1,15 +1,13 @@
 // input areas
 let AddInputArea = document.querySelector("#insert-note"); // add input area
 // add note or cancel
-let AddNoteBtn = document.querySelector("#add-note");
+let AddNoteBtn = document.querySelector("#add-Newnote");
 let CancelAddNoteBtn = document.querySelector("#cancel-note")
 
 
-let EditInputAreaList = document.getElementsByClassName("edit-note"); // edit input area
 // edit and cancel 
-let EditNoteBtnList = document.getElementsByClassName("EditNote-btn");
-let CancelEditNoteBtnList = document.getElementsByClassName("Cancel-EditNoteBtn");
-
+let EditNoteBtnList = document.querySelectorAll(".edit-note-btn");
+let CancelEditNoteBtnList = document.querySelectorAll(".close-Editinput");
 
 
 
@@ -23,23 +21,17 @@ CancelAddNoteBtn.addEventListener("click", ()=>{
 
 
 
-function EditNote (){
-    let editInputArea = this.parentElement.children[1];
+function EditNote (e){
+   
+    let editInputArea = e.parentElement.children[1];
     editInputArea.classList.add('active-input-note')
 }
 
 
-for(var btn of EditNoteBtnList){
-    btn.addEventListener('click',EditNote)
-}
 
 
-function CancelEditNote (){
-    let editInputArea = this.parentElement.parentElement.parentElement.parentElement;
-
+function CloseEditNote (e){
+   
+    let editInputArea = e.parentElement.parentElement.parentElement;
     editInputArea.classList.remove('active-input-note')
-}
-
-for(var btn of CancelEditNoteBtnList){
-    btn.addEventListener('click',CancelEditNote)
 }

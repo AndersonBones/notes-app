@@ -18,12 +18,13 @@ export const dashboard = async (req:Request, res:Response) => {
 
     let NotHaveNotes = "you still don't have any notes" as string
     let notes:string[] = [] ;
+    let userID = 0;
 
     if(req.user){
-        const id = req.user as number;
+        userID = req.user as number;
         
-        let userNotes = await NotesService.getNotes(id);
-
+        let userNotes = await NotesService.getNotes(userID);
+        
         if(userNotes instanceof Error){
             NotHaveNotes = userNotes.message as string;
         }else{
@@ -33,11 +34,34 @@ export const dashboard = async (req:Request, res:Response) => {
     }else{
         res.status(401).render('pages/error')
     }
+
     
-    
-    res.status(201).render('pages/dashboard', {notes, error:NotHaveNotes})
+    res.status(201).render('pages/dashboard', {notes, userID, error:NotHaveNotes})
 
    
+}
+
+export const allNotes = async (req: Request, res:Response) => {
+    let NotHaveNotes = "you still don't have any notes" as string
+    let notes:string[] = [] ;
+    let userID = 0;
+
+    if(req.user){
+        userID = req.user as number;
+        
+        let userNotes = await NotesService.getNotes(userID);
+        
+        if(userNotes instanceof Error){
+            NotHaveNotes = userNotes.message as string;
+        }else{
+            notes = [...userNotes.content];
+        }
+
+    }else{
+        res.status(401).json({error:true, msg:'Not authorization', NotHaveNotes})
+    }
+
+    res.status(201).json({error:false, notes, userID})
 }
 
 export const logout = async (req:Request, res:Response) => {
