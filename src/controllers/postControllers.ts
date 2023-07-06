@@ -70,8 +70,6 @@ export const addNotes = async (req:Request, res:Response) => {
 export const deleteNotes = async (req:Request, res:Response) => {
     let id:number = Number(req.user);
 
-    
-
     if(req.params.index && id){
         let indexNote = Number(req.params.index);
         let user = await NoteService.deleteNotes(indexNote, id);
@@ -85,7 +83,6 @@ export const deleteNotes = async (req:Request, res:Response) => {
         res.status(401).json({error:'Dados não enviados'})
     }
 }
-
 
 export const editNotes = async (req:Request, res:Response) => {
     let id:number = Number(req.user);
