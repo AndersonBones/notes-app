@@ -11,36 +11,35 @@ dotenv.config();
 
 const NotAuthorized = {status:401, error:'Unauthorized'}
 
-const options = {
+const options = { // regras para a geração do token
     jwtFromRequest:ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.SECRET_TOKEN as string
 }
 
-passport.use(new JWTStrategy(options, async (payload, done)=>{
+passport.use(new JWTStrategy(options, async (payload, done)=>{ // procura o usuário no banco de dados utilizando o id como identificador
     let user = await NotesService.findById(payload.id);
 
     if(user){
-        return done(null, user.id)
+        return done(null, user.id) // retorna o id do usuário
     }else{
-        return done(NotAuthorized, false);
+        return done(NotAuthorized, false); // retorna uma mensagem de erro
     }   
 }))
 
-export const privateAuth = (req:Request, res:Response, next:NextFunction) =>{
+export const privateAuth = (req:Request, res:Response, next:NextFunction) =>{ // verifica se o client tem o token de autenticação
 
     const token = req.cookies.token as string;
     let Unauthorized = false;
     
-    if(token){
+    if(token){ // caso o client tenha o token
         
+        req.headers.authorization = `Bearer ${token}`; // passa o token para o header da requisição, devolvendo para o servidor
 
-        req.headers.authorization = `Bearer ${token}`;
-
-        const authFunction = passport.authenticate('jwt', (err, user)=>{
+        const authFunction = passport.authenticate('jwt', (err, user)=>{ // verifica se o usuario foi localizado
             if(user){
-                req.user = user;
+                req.user = user; // devolve as informações do usuário para o servidor
                 
-                next()
+                next() // realiza a autenticação
             }else{
                 Unauthorized = true;
                 next(Unauthorized)
@@ -48,7 +47,7 @@ export const privateAuth = (req:Request, res:Response, next:NextFunction) =>{
             }
         })
 
-        authFunction(req, res, next);
+        authFunction(req, res, next); // executa a função
     }else{
         res.status(401).redirect('/login')
  
