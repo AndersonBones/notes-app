@@ -15,7 +15,6 @@ export const register = async (req:Request, res:Response) => {
 
 export const dashboard = async (req:Request, res:Response) => {
     
-
     let NotHaveNotes = "you still don't have any notes" as string
     let notes:string[] = [] ;
 
@@ -34,9 +33,7 @@ export const dashboard = async (req:Request, res:Response) => {
         res.status(401).render('pages/error')
     }
     
-    
     res.status(201).render('pages/dashboard', {notes, error:NotHaveNotes})
-
    
 }
 
