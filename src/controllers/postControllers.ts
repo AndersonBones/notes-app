@@ -16,8 +16,6 @@ export const loginValidate = async (req:Request, res:Response) => {
         let user = await UserService.findByEmail(email);
 
         if(user && UserService.matchPassword(password, user.password)){
-            
-            
             const token = await UserService.genToken({id:user.id});
             res.status(201).cookie('token', token, {expires:new Date(expiresCookie),httpOnly:true}).redirect('/dashboard')
             return;
