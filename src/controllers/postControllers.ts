@@ -6,7 +6,7 @@ import dotenv from 'dotenv'
 dotenv.config();
 let expiresCookie = Date.now()+ 1000 * 3600 * 24 * 7;
 
-export const loginValidate = async (req:Request, res:Response) => {
+export const loginValidate = async (req:Request, res:Response) => { // validação de autenticação
     let Unauthorized = false;
 
     if(req.body.password && req.body.email){
