@@ -34,7 +34,7 @@ export const registerValidate = async (req:Request, res:Response) => {
         let email: string = req.body.email;
         let password: string = req.body.password;
 
-       let newUser = await UserService.register(name, email, password);
+       let newUser = await UserService.register(name, email, password); // cria um novo usuário
 
        if(newUser instanceof Error){ // precisa informar se já existe a conta
             return res.status(401).json({error:newUser.message})
