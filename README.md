@@ -18,3 +18,6 @@ e tudo aquilo que voce não pode esquecer :)
 
 ### Live Demo
 <a href="https://notes-app-f54y.onrender.com/">Live Demo</a>
+
+
+o código do projeto principal está na branch v2
