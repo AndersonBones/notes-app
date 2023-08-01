@@ -6,9 +6,8 @@ import dotenv from 'dotenv'
 dotenv.config();
 let expiresCookie = Date.now()+ 1000 * 3600 * 24 * 7;
 
-export const loginValidate = async (req:Request, res:Response) => {
+export const loginValidate = async (req:Request, res:Response) => { // validação de autenticação
     let Unauthorized = false;
-    console.log(req.body)
 
     if(req.body.password && req.body.email){
         let email: string = req.body.email;
@@ -18,8 +17,7 @@ export const loginValidate = async (req:Request, res:Response) => {
 
         if(user && UserService.matchPassword(password, user.password)){
             
-            
-            const token = await UserService.genToken({id:user.id});
+            const token = await UserService.genToken({id:user.id}); // gera o token de autenticação
             res.status(201).cookie('token', token, {expires:new Date(expiresCookie),httpOnly:true}).redirect('/dashboard')
             return;
         } else{
@@ -36,12 +34,12 @@ export const registerValidate = async (req:Request, res:Response) => {
         let email: string = req.body.email;
         let password: string = req.body.password;
 
-       let newUser = await UserService.register(name, email, password);
+       let newUser = await UserService.register(name, email, password); // cria um novo usuário
 
        if(newUser instanceof Error){ // precisa informar se já existe a conta
             return res.status(401).json({error:newUser.message})
        }else{
-        const token = await UserService.genToken({id:newUser.id})
+        const token = await UserService.genToken({id:newUser.id}) // gera o token de autenticação de cadastro
         res.status(201).cookie('token', token, {expires:new Date(expiresCookie),httpOnly:true}).redirect("/dashboard");
        }
     }else{
@@ -55,12 +53,10 @@ export const registerValidate = async (req:Request, res:Response) => {
 
 export const addNotes = async (req:Request, res:Response) => {
     let id:number = Number(req.user);
-    console.log(req.body)
+
     if(req.body.note && id){
         
         let note:string = req.body.note;
-        
-        
         let user = await NoteService.addNotes(note, id);
         
         if(user instanceof Error){
@@ -77,7 +73,6 @@ export const addNotes = async (req:Request, res:Response) => {
 export const deleteNotes = async (req:Request, res:Response) => {
     let id:number = Number(req.user);
 
-    
     if(req.params.index && id){
         let indexNote = Number(req.params.index);
         let user = await NoteService.deleteNotes(indexNote, id);
