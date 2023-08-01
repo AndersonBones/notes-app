@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000'
+const url = 'https://notes-4qm2.onrender.com'
 
 // ADD NEW NOTE function
 async function addNote(){
@@ -31,9 +31,6 @@ $("#save-note").click(async(e)=>{
     }else{
         alert('Write something')
     }
-    
-    
-    
     
 });
 
@@ -103,7 +100,7 @@ function generateNotes(data){
                 </div>
             </div>
 
-            <span class="text-secondary">213123</span>
+            <span class="text-secondary"></span>
         </div>
         
 
