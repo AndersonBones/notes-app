@@ -1,6 +1,7 @@
 import express,{ErrorRequestHandler} from 'express'
-
+import { ConnectDB } from './middlewares/DBconnection';
 import path from 'path' 
+import { NextFunction, Request, Response } from "express";
 import routes from './routes/index'
 import cookieParser from 'cookie-parser';
 import passport from 'passport'
