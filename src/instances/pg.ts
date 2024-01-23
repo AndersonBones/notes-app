@@ -4,6 +4,6 @@ import dotenv from 'dotenv'
 
 dotenv.config();
 
-const sequelize = new Sequelize(process.env.PG_URL as string,{dialect:'postgres', dialectModule: Sequelize}) // Example for postgres
+const sequelize = new Sequelize(process.env.PG_URL as string,{dialect:'postgres'}) // Example for postgres
 
 export default sequelize
