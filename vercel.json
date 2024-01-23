@@ -1,0 +1,25 @@
+{
+    "routes":[
+        {
+            "src":"/",
+            "dest":"/"
+        },
+        {
+            "src":"/login",
+            "dest":"/"
+        },
+        {
+            "src":"/register",
+            "dest":"/"
+        },
+        {
+            "src":"/dashboard",
+            "dest":"/"
+        },
+
+        {
+            "src":"/allNotes",
+            "dest":"/"
+        }
+    ]
+}
