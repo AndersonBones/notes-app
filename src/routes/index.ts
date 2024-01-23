@@ -7,7 +7,7 @@ import { privateAuth } from "../config/passport";
 
 const router = Router();
 
-router.get('/', privateAuth, dashboard)
+router.get('/', ConnectDB, privateAuth, dashboard)
 router.get('/login', login)
 
 router.get('/register', register)
