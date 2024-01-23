@@ -1,25 +1,17 @@
 {
+    "version":2,
+    "builds":[
+        {
+            "src":"src/server.ts",
+            "use":"@vercel/node"
+        }
+    ],
+
     "routes":[
         {
-            "src":"/",
-            "dest":"/"
-        },
-        {
-            "src":"/login",
-            "dest":"/"
-        },
-        {
-            "src":"/register",
-            "dest":"/"
-        },
-        {
-            "src":"/dashboard",
-            "dest":"/"
-        },
-
-        {
-            "src":"/allNotes",
-            "dest":"/"
+            "src":"(.*)",
+            "dest":"/src/server.ts"
         }
+
     ]
 }
