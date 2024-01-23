@@ -6,9 +6,10 @@ import { NextFunction, Request, Response } from "express";
 
 export const ConnectDB = async (req:Request, res:Response, next:NextFunction) => {
     try {
-        await sequelize.authenticate();
         User.sync();
         Notes.sync();
+        await sequelize.authenticate();
+        
         res.status(200)
         console.log('Connection has been established successfully.');
         next();
