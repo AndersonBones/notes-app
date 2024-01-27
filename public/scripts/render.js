@@ -1,4 +1,4 @@
-const url = 'https://notes-4qm2.onrender.com'
+const url = 'https://notes-app-ten-sable.vercel.app/'
 
 // ADD NEW NOTE function
 async function addNote(){
